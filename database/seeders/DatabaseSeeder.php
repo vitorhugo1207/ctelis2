@@ -12,13 +12,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Mario',
-            'username' => 'mario46_',
-            'email' => 'mariomad2296@gmail.com',
+            'name' => 'Vitor Hugo',
+            'email' => 'vitorhugo@gmail.com',
+            'password' => 'vitor123',
         ]);
 
-        collect(range(1, 100))->each(function ($_) {
-            \App\Models\User::factory()->hasPosts(rand(0, 16))->create();
-        });
+        User::factory()->create([
+            'name' => 'Élis Junior',
+            'email' => 'elies@gmail.com',
+            'password' => 'eli123',
+        ]);
     }
 }

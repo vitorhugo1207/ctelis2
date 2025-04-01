@@ -15,12 +15,4 @@ export default function Index() {
     );
 }
 Index.layout = (page) => <AuthLayout title={'Dashboard'} children={page} />;
-{
-    /* <div className='px-2 pb-12 pt-28'>
-<Container>
-    <div className='max-w-2xl space-y-6'>
-        <div className='p-6 text-foreground'>You're logged in!</div>
-    </div>
-</Container>
-</div> */
-}
+
