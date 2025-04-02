@@ -10,7 +10,7 @@ class SistemaGraduacao extends Seeder
     public function run(): void
     {
         $sistema_graduacaos = [
-            ['nome' => 'JitJitsu'],
+            ['nome' => 'JiuJitsu'],
             ['nome' => 'MuayThai']
         ];
 
