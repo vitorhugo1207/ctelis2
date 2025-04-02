@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('aluno_id')->constrained('alunos')->cascadeOnDelete();
             $table->foreignId('arte_marcial_id')->constrained('arte_marcials')->cascadeOnDelete();
-            $table->foreignId('grau_id')->constrained('graus')->cascadeOnDelete();
+            $table->foreignId('grau_id')->constrained('graus')->cascadeOnDelete()->nullable();
             $table->date('data_inicio')->nullable();
             $table->timestamps();
 
