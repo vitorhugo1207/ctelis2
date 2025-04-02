@@ -5,4 +5,4 @@
 
 
 # Legal
-Esse projeto foi inicialmente um fork de ... .
+This project was initially a fork of ..., if the author's rights are violated please contact me through my contacts on my github home page.
