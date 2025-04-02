@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->date('birthDay')->nullable();
-            $table->string('telephone', 21)->nullable();
-            $table->string('address', 100)->nullable();
-            $table->string('nameResponsible', 100)->nullable();
-            $table->string('telephoneResponsible', 21)->nullable();
+            $table->string('name');
+            $table->string('endereco')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('dataNascimento')->nullable();
+            $table->string('nomeResponsavel')->nullable();
+            $table->string('telefoneResponsavel')->nullable();
             $table->timestamps();
         });
     }
