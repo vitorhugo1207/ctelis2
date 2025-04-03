@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('arte_marcials', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('sistema_graduacao_id')->constrained('sistema_graduacaos')->cascadeOnDelete();
+            $table->foreignId('sistema_graduacao_id')->nullable()->constrained('sistema_graduacaos')->cascadeOnDelete();
             $table->timestamps();
         });
     }
