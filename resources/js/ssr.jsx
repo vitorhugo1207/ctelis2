@@ -4,6 +4,8 @@ import createServer from '@inertiajs/react/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import route from '../../vendor/tightenco/ziggy/dist/index.m';
 
+import { PrimeReactProvider } from 'primereact/api';
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createServer((page) =>
@@ -19,7 +21,13 @@ createServer((page) =>
                     location: new URL(page.props.ziggy.location),
                 });
 
-            return <App {...props} />;
+            return (
+                <>
+                    <PrimeReactProvider>
+                        <App {...props} />
+                    </PrimeReactProvider>
+                </>
+            );
         },
     }),
 );
