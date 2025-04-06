@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import InputError from '@/components/input-error';
 import { useForm } from '@inertiajs/react';
-import { Input } from '@/components/input';
-import { Checkbox } from '@/components/checkbox';
-import { Button } from '@/components/button';
-import { Label } from '@/components/label';
-import GuestLayout from '@/Layouts/guest-layout';
-import PrimaryLink from '@/components/primary-link';
+import { FloatLabel } from 'primereact/floatlabel';
+import { InputText } from 'primereact/inputtext';
+import { Password } from 'primereact/password';
+import { Button } from 'primereact/button';
+import { Head } from '@inertiajs/react'
+import { Message } from 'primereact/message';
+import { Checkbox } from "primereact/checkbox";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -29,50 +29,44 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <>
-            {status && <div className='mb-4 text-sm font-medium text-green-600'>{status}</div>}
-            <form onSubmit={submit}>
+            <Head title="Entrar" />
+
+            <div className='w-full flex flex-col gap-5 justify-end'>
+                <div className='flex justify-center'>
+                    <img src="/favicon.ico" alt="logo" width="200" height="200" />
+                </div>
                 <div>
-                    <Label htmlFor='email' className={'capitalize'}>
-                        email
-                    </Label>
-
-                    <Input id='email' type='email' name='email' value={data.email} className='mt-1 block w-full' autoComplete='username' autoFocus onChange={(e) => setData('email', e.target.value)} />
-
-                    <InputError message={errors.email} className='mt-2' />
+                    <div className='flex justify-center'>
+                        <form onSubmit={submit} className='flex flex-col gap-6 w-full items-center'>
+                            <div className='text-left w-80 leading-none'>
+                                <h1>Olá,</h1>
+                                <h1>Bem-vindo ao CT L's</h1>
+                            </div>
+                            <div>
+                                <FloatLabel>
+                                    <InputText id="username" className='w-80' value={data.email} autoComplete='username' autoFocus onChange={(e) => setData('email', e.target.value)} />
+                                    <label htmlFor="username">E-mail</label>
+                                </FloatLabel>
+                                {errors.email && <div className='pt-1'><Message severity="error" text={errors.email} className='w-80' /></div>}
+                            </div>
+                            <div>
+                                <FloatLabel>
+                                    <Password id='password' pt={{ input: { className: 'w-80' } }} toggleMask feedback={false} value={data.password} autoComplete='current-password' onChange={(e) => setData('password', e.target.value)} />
+                                    <label htmlFor="password">Senha</label>
+                                </FloatLabel>
+                                {errors.password && <div className='pt-1'><Message severity="error" text={errors.password} className='w-80' /></div>}
+                            </div>
+                            <div>
+                                <Checkbox name='remember' onCheckedChange={e => setData('remember', e)} checked={data.checked}/>
+                                <label htmlFor="password">Relembra-me</label>
+                            </div>
+                            <div className='pb-8 pt-5 flex justify-center'>
+                                <Button type='submit' label="Entrar" className='w-80' disabled={processing} />
+                            </div>
+                        </form>
+                    </div>
                 </div>
-
-                <div className='mt-4'>
-                    <Label htmlFor='password' className={'capitalize'}>
-                        password
-                    </Label>
-
-                    <Input id='password' type='password' name='password' value={data.password} className='mt-1 block w-full' autoComplete='current-password' onChange={(e) => setData('password', e.target.value)} />
-
-                    <InputError message={errors.password} className='mt-2' />
-                </div>
-
-                <div className='mt-4 block'>
-                    <label className='flex items-center'>
-                        <Checkbox name='remember' checked={data.remember} onCheckedChange={(e) => setData('remember', e)} />
-                        <span className='ml-2 text-sm text-muted-foreground'>Remember me</span>
-                    </label>
-                </div>
-
-                <div className='mt-4 flex items-center justify-end'>
-                    {/* {canResetPassword && (
-                        <Link href={route('password.request')} className='rounded-md text-sm text-muted-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2'>
-                            Forget Password?
-                        </Link>
-                    )} */}
-                    <PrimaryLink href={route('register')} value={'register?'} />
-
-                    <Button className='ml-4' disabled={processing}>
-                        Log in
-                    </Button>
-                </div>
-            </form>
+            </div>
         </>
     );
 }
-
-Login.layout = (page) => <GuestLayout title={'Login'} description={'Welcome back, Login and jump to your dashboard'} children={page} />;
