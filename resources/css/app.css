@@ -1,6 +1,7 @@
 @layer tailwind-base, primereact, tailwind-utilities;
 
 @import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
+@import 'primeicons/primeicons.css';
 
 @layer tailwind-base {
     @tailwind base;
@@ -15,12 +16,13 @@ body {
     background-color: #f4f4f4;
 }
 
-:root {
-    --primary-color: #2d313b !important;
+main {
+    width: calc(100vw - 15px);
+    height: 97vh;
 }
 
-main {
-    height: 90vh;
+:root {
+    --primary-color: #2d313b !important;
 }
 
 button {
