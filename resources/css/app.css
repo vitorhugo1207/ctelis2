@@ -18,7 +18,7 @@ body {
 
 main {
     width: calc(100vw - 15px);
-    height: 97vh;
+    height: 70vh;
 }
 
 :root {
