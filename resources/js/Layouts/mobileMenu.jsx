@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { SpeedDial } from 'primereact/speeddial';
 
-export default function MobileMenu() {
+export default function MobileMenu({ className }) {
     const toast = useRef(null);
 
     const items = [
@@ -36,7 +36,7 @@ export default function MobileMenu() {
     ];
 
     return (
-        <div className='z-40 fixed right-[4.4rem]'>
+        <div className={`z-40 fixed right-[4.8rem] top-[70vh] ${className}`}>
             <SpeedDial model={items}
                 mask
                 showIcon="pi pi-bars"
