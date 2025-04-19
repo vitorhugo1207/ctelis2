@@ -15,7 +15,7 @@ export default function MobileMenu({ className }) {
     ];
 
     return (
-        <div className={`z-40 fixed right-[4.8rem] top-[70vh] ${className}`}>
+        <div className={`z-40 fixed right-[4.8rem] top-[85vh] ${className}`}>
             <SpeedDial model={items}
                 mask
                 showIcon="pi pi-bars"
