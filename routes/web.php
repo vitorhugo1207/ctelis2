@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\DestroyAccountController;
+use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\Auth\SecurityController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\DashboardController;
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
         Route::get('users/{user}', 'show')->name('users.show');
         Route::delete('users/{user}', 'destroy')->name('users.destroy');
     });
+
+    Route::get('alunos', AlunoController::class)->name('alunos');
 });
 
 require __DIR__ . '/auth.php';

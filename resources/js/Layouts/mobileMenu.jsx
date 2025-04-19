@@ -9,6 +9,7 @@ export default function MobileMenu({ className }) {
         {
             label: 'Sair',
             icon: 'pi pi-sign-out',
+            className: 'first:bg-red-500',
             command: () => {
                 Inertia.post(route('logout'));
             }
@@ -17,19 +18,26 @@ export default function MobileMenu({ className }) {
             label: 'Alunos',
             icon: 'pi pi-users',
             command: () => {
-                Inertia.get(route('alunos.index'));
+                Inertia.get(route('alunos'));
+            }
+        },
+        {
+            label: 'Dashboard',
+            icon: 'pi pi-home',
+            command: () => {
+                Inertia.get(route('dashboard'));
             }
         }
     ];
 
     return (
-        <div className={`z-40 fixed right-[4.8rem] top-[81vh] ${className}`}>
+        <div className={`z-40 fixed right-[4.8rem] top-[76vh] ${className}`}>
             <div>
                 <SpeedDial model={items}
-                    mask
                     buttonClassName="p-button-help"
                     className='speeddial-up'
                     showIcon="pi pi-bars"
+                    butt
                     hideIcon="pi pi-times"
                     transitionDelay={80}
                     radius={120}
