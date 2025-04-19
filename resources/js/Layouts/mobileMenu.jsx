@@ -1,38 +1,17 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { SpeedDial } from 'primereact/speeddial';
+import { Inertia } from '@inertiajs/inertia';
 
 export default function MobileMenu({ className }) {
-    const toast = useRef(null);
 
     const items = [
         {
-            label: 'Add',
-            icon: 'pi pi-pencil',
+            label: 'Sair',
+            icon: 'pi pi-sign-out',
             command: () => {
-                toast.current.show({ severity: 'info', summary: 'Add', detail: 'Data Added' });
+                Inertia.post(route('logout'));
             }
         },
-        {
-            label: 'Update',
-            icon: 'pi pi-refresh',
-            command: () => {
-                toast.current.show({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
-            }
-        },
-        {
-            label: 'Delete',
-            icon: 'pi pi-trash',
-            command: () => {
-                toast.current.show({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
-            }
-        },
-        {
-            label: 'React Website',
-            icon: 'pi pi-external-link',
-            command: () => {
-                window.location.href = 'https://react.dev/';
-            }
-        }
     ];
 
     return (
