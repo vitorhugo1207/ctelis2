@@ -1,49 +1,49 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { SpeedDial } from 'primereact/speeddial';
+import { Inertia } from '@inertiajs/inertia';
+import { Tooltip } from 'primereact/tooltip';
 
 export default function MobileMenu({ className }) {
-    const toast = useRef(null);
 
     const items = [
         {
-            label: 'Add',
-            icon: 'pi pi-pencil',
+            label: 'Sair',
+            icon: 'pi pi-sign-out',
+            className: 'first:bg-red-500',
             command: () => {
-                toast.current.show({ severity: 'info', summary: 'Add', detail: 'Data Added' });
+                Inertia.post(route('logout'));
             }
         },
         {
-            label: 'Update',
-            icon: 'pi pi-refresh',
+            label: 'Alunos',
+            icon: 'pi pi-users',
             command: () => {
-                toast.current.show({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
+                Inertia.get(route('alunos'));
             }
         },
         {
-            label: 'Delete',
-            icon: 'pi pi-trash',
+            label: 'Dashboard',
+            icon: 'pi pi-home',
             command: () => {
-                toast.current.show({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
-            }
-        },
-        {
-            label: 'React Website',
-            icon: 'pi pi-external-link',
-            command: () => {
-                window.location.href = 'https://react.dev/';
+                Inertia.get(route('dashboard'));
             }
         }
     ];
 
     return (
-        <div className={`z-40 fixed right-[4.8rem] top-[70vh] ${className}`}>
-            <SpeedDial model={items}
-                mask
-                showIcon="pi pi-bars"
-                hideIcon="pi pi-times"
-                transitionDelay={80}
-                radius={120}
-                direction="up" />
+        <div className={`z-40 fixed right-[4.8rem] top-[76vh] ${className}`}>
+            <div>
+                <SpeedDial model={items}
+                    buttonClassName="p-button-help"
+                    className='speeddial-up'
+                    showIcon="pi pi-bars"
+                    butt
+                    hideIcon="pi pi-times"
+                    transitionDelay={80}
+                    radius={120}
+                    direction="up" />
+                <Tooltip target=".speeddial-up .p-speeddial-action" position="left" />
+            </div>
         </div>
     )
 }

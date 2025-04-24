@@ -56,9 +56,9 @@ export default function Login({ status, canResetPassword }) {
                                 </FloatLabel>
                                 {errors.password && <div className='pt-1'><Message severity="error" text={errors.password} className='w-80' /></div>}
                             </div>
-                            <div className='flex w-80 justify-start gap-3 items-center'>
-                                <Checkbox name='remember' onCheckedChange={e => setData('remember', e)} checked={data.checked}/>
-                                <label htmlFor="password">Relembra-me</label>
+                            <div className='flex w-80 justify-start gap-3'>
+                                <Checkbox name='remember' onChange={(e) => setData('remember', e.checked)} checked={data.remember} />
+                                <label htmlFor="remember">Relembra-me</label>
                             </div>
                             <div className='pt-5 flex justify-center'>
                                 <Button type='submit' label="Entrar" className='w-80' disabled={processing} />
