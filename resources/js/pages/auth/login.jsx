@@ -56,7 +56,7 @@ export default function Login({ status, canResetPassword }) {
                                 </FloatLabel>
                                 {errors.password && <div className='pt-1'><Message severity="error" text={errors.password} className='w-80' /></div>}
                             </div>
-                            <div className='flex w-full justify-start pl-16 gap-3 items-center'>
+                            <div className='flex w-80 justify-start gap-3 items-center'>
                                 <Checkbox name='remember' onCheckedChange={e => setData('remember', e)} checked={data.checked}/>
                                 <label htmlFor="password">Relembra-me</label>
                             </div>
