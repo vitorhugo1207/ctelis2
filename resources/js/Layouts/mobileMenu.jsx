@@ -31,19 +31,17 @@ export default function MobileMenu({ className }) {
     ];
 
     return (
-        <div className={`z-40 fixed right-[4.8rem] top-[76vh] ${className}`}>
-            <div>
-                <SpeedDial model={items}
-                    buttonClassName="p-button-help"
-                    className='speeddial-up'
-                    showIcon="pi pi-bars"
-                    butt
-                    hideIcon="pi pi-times"
-                    transitionDelay={80}
-                    radius={120}
-                    direction="up" />
-                <Tooltip target=".speeddial-up .p-speeddial-action" position="left" />
-            </div>
+        <div className={`z-40 ${className}`}>
+            <SpeedDial model={items}
+                buttonClassName="p-button-help"
+                className='speeddial-up right-0 bottom-0 mr-2 mb-2'
+                showIcon="pi pi-bars"
+                butt
+                hideIcon="pi pi-times"
+                transitionDelay={80}
+                radius={120}
+                direction="up" />
+            <Tooltip target=".speeddial-up .p-speeddial-action" position="left" />
         </div>
     )
 }
