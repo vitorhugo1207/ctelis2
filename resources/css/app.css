@@ -25,7 +25,7 @@ main {
     --primary-color: #2d313b !important;
 }
 
-button {
+.btnPrimary {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
 }

@@ -61,7 +61,7 @@ export default function Login({ status, canResetPassword }) {
                                 <label htmlFor="remember">Relembra-me</label>
                             </div>
                             <div className='pt-5 flex justify-center'>
-                                <Button type='submit' label="Entrar" className='w-80' disabled={processing} />
+                                <Button type='submit' label="Entrar" className='w-80 btnPrimary' disabled={processing} />
                             </div>
                         </form>
                     </div>
