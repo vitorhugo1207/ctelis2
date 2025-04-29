@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
-class ArteMarcial extends Seeder
+class ArteMarcialSeeder extends Seeder
 {
     public function run(): void
     {
