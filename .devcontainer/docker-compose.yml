@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  laravel:
+    build: .
+    volumes:
+      - ..:/workspace:cached
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - 3306:3306
