@@ -14,7 +14,7 @@ export default defineConfig({
     ],
     server: {
         host: '127.0.0.1',
-        port: 8000,
+        port: 5173,
         hmr: {
             host: process.env.REPL_SLUG ? `${process.env.REPL_SLUG}.id.repl.co` : 'localhost',
             protocol: process.env.REPL_SLUG ? 'wss' : 'ws',

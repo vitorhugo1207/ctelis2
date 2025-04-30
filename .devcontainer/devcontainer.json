@@ -1,12 +1,15 @@
 {
-    "name": "Laravel Codespace",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "laravel",
-    "workspaceFolder": "/workspace",
-    "postCreateCommand": "composer install",
-    "forwardPorts": [8000, 3306, 8001],
-    "extensions": [
-      "bmewburn.vscode-intelephense-client",
-      "onecentlin.laravel-blade"
-    ]
-  }
+  "name": "Laravel Codespace",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "laravel",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "composer install",
+  "forwardPorts": [8000, 5173],
+  "extensions": [
+    "bmewburn.vscode-intelephense-client",  // Extensão para PHP (Intelephense)
+    "onecentlin.laravel-blade",  // Extensão para sintaxe do Laravel Blade
+    "wakatime.vscode-wakatime",  // Extensão Wakatime para rastrear tempo
+    "ms-azuretools.vscode-docker",  // Extensão Docker da Microsoft
+    "ms-vscode-remote.remote-containers"  // Extensão para trabalhar com containers remotos
+  ]
+}
