@@ -13,11 +13,18 @@ export default defineConfig({
         react(),
     ],
     server: {
-        host: '0.0.0.0',
+        host: '127.0.0.1',
         port: 8000,
         hmr: {
-            host: process.env.REPL_SLUG + '.id.repl.co',
-            protocol: 'wss',
+            host: process.env.REPL_SLUG ? `${process.env.REPL_SLUG}.id.repl.co` : 'localhost',
+            protocol: process.env.REPL_SLUG ? 'wss' : 'ws',
+        },
+        proxy: {
+            '/api': {
+                target: 'http://127.0.0.1:8000', // Ensure this matches your backend URL
+                changeOrigin: true,
+                secure: false,
+            },
         },
     },
 });
