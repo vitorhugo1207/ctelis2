@@ -14,16 +14,10 @@ export default defineConfig({
     ],
     server: {
         host: '0.0.0.0',
-        port: 5173,
+        port: 8000,
         hmr: {
             host: process.env.REPL_SLUG + '.id.repl.co',
             protocol: 'wss',
-            clientPort: 443,
         },
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-        }
     },
 });
