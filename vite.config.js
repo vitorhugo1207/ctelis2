@@ -16,7 +16,11 @@ export default defineConfig({
         host: '0.0.0.0',
         hmr: {
             host: process.env.REPL_SLUG + '.id.repl.co',
+            protocol: 'wss',
+            clientPort: 443,
         },
+        https: true,
+        cors: true,
         watch: {
             ignored: ['**/node_modules/**', '**/vendor/**']
         },
