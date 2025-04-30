@@ -12,7 +12,7 @@ export default function AlunosList({ alunos }) {
 
             <div className="card">
                 <DataTable value={alunos} sortMode="multiple">
-                    <Column field="name" header="Nome" sortable />
+                    <Column field="name" header="Nome" sortable filter />
                 </DataTable>
             </div>
         </>
