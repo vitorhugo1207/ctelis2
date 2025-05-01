@@ -15,7 +15,6 @@ export default function AlunoMobile({ alunos }) {
         try {
             const response = await axios.get('/alunoSearch', { params: { search } });
             setAlunoList(response.data.alunos);
-            console.log('Alunos encontrados:', response.data.alunos);
         } catch (error) {
             console.error('Erro ao buscar alunos:', error);
             setErrorMsg('Erro ao buscar alunos. Tente novamente mais tarde.');
