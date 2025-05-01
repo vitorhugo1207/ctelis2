@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\DestroyAccountController;
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\ArteMarcialController;
 use App\Http\Controllers\Auth\SecurityController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\DashboardController;
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
         Route::get('alunos', '__invoke')->name('alunos');
         Route::get('alunoSearch', 'alunoSearch')->name('alunoSearch');
     });
+
+    Route::get('arteMarcial', [ArteMarcialController::class, 'getAllArtesMarciais'])->name('allArtesMarciais');
 });
 
 require __DIR__ . '/auth.php';
