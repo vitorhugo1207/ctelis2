@@ -28,8 +28,7 @@ class AlunoController extends Controller
             ->orWhere('telefone', 'like', "%{$search}%")
             ->orWhere('endereco', 'like', "%{$search}%")
             ->orWhere('nomeResponsavel', 'like', "%{$search}%")
-            ->orWhere('telefoneResponsavel', 'like', "%{$search}%")
-            ->orderBy('name');
+            ->orWhere('telefoneResponsavel', 'like', "%{$search}%");
         })->limit(50)->get();
 
         return response()->json(['alunos' => $alunos]);
