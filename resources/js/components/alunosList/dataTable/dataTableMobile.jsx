@@ -2,20 +2,26 @@ import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { useDialog } from '../../../context/DialogContext';
+import axios from 'axios';
 
-export default function DataTableMobile({ alunoList }) {
+export default function DataTableMobile({ alunoList, toastSuccess, toastError, setAlunoList }) {
     const { showDialog } = useDialog();
 
-    const confirmDeleteAluno = () => {
+    const confirmDeleteAluno = (aluno) => {
         showDialog({
             message: 'Tem certeza que deseja deletar este aluno?',
             header: 'Confirmação',
-            accept: () => {
-                console.log('Aluno deletado');
-                // TODO: lógica para deletar o aluno
+            accept: async () => {
+                const response = await axios.delete(`/deleteAluno/${aluno.id}`);
+                if (response.status === 200) {
+                    toastSuccess('Aluno deletado com sucesso!');
+                    setAlunoList(response.data.alunos);
+                } else {
+                    toastError('Erro ao deletar aluno.');
+                }
             },
             reject: () => {
-                console.log('Ação cancelada');
+                //
             },
         });
     };
@@ -23,7 +29,7 @@ export default function DataTableMobile({ alunoList }) {
     const optionsAluno = (rowData) => {
         return (
             <div className="flex gap-2 w-full justify-center">
-                <Button onClick={confirmDeleteAluno} icon="pi pi-trash" className="p-button-rounded p-button-danger" text />
+                <Button onClick={() => confirmDeleteAluno(rowData)} icon="pi pi-trash" className="p-button-rounded p-button-danger" text />
             </div>
         );
     }

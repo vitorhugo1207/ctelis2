@@ -39,9 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::controller(AlunoController::class)->group(function () {
         Route::get('alunos', '__invoke')->name('alunos');
         Route::get('alunoSearch', 'alunoSearch')->name('alunoSearch');
+        Route::delete('deleteAluno/{id}', 'destroy')->name('deleteAluno');
     });
 
-    Route::get('arteMarcial', [ArteMarcialController::class, 'getAllArtesMarciais'])->name('allArtesMarciais');
+    Route::get('allArtesMarciais', [ArteMarcialController::class, 'getAllArtesMarciais'])->name('allArtesMarciais');
 });
 
 require __DIR__ . '/auth.php';

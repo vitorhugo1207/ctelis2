@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Aluno;
+use Illuminate\Support\Facades\Log;
 
 class AlunoController extends Controller
 {
     public function __invoke()
     {
+        return inertia('alunos/alunosList', ['alunos' => $this->getAllAlunos()]);
+    }
+
+    private function getAllAlunos()
+    {
         $alunos = Aluno::limit(50)->get();
-        return inertia('alunos/alunosList', ['alunos' => $alunos]);
+        return $alunos;
     }
 
     public function alunoSearch(Request $request)
@@ -27,5 +33,21 @@ class AlunoController extends Controller
         })->limit(50)->get();
 
         return response()->json(['alunos' => $alunos]);
+    }
+
+    public function destroy($id)
+    {
+        $aluno = Aluno::find($id);
+
+        if (!$aluno) {
+            return response()->json([
+                'alunos' => $this->getAllAlunos(),
+                'error' => 'Aluno não encontrado.'
+            ], 404);
+        }
+
+        $aluno->delete();
+
+        return response()->json(['alunos' => $this->getAllAlunos()]);
     }
 }
