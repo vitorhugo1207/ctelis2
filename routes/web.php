@@ -35,8 +35,10 @@ Route::middleware('auth')->group(function () {
         Route::delete('users/{user}', 'destroy')->name('users.destroy');
     });
 
-    Route::get('alunos', AlunoController::class)->name('alunos');
-    Route::get('alunoSearch', [AlunoController::class, 'alunoSearch'])->name('alunoSearch');
+    Route::controller(AlunoController::class)->group(function () {
+        Route::get('alunos', '__invoke')->name('alunos');
+        Route::get('alunoSearch', 'alunoSearch')->name('alunoSearch');
+    });
 });
 
 require __DIR__ . '/auth.php';
