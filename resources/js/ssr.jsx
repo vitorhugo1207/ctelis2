@@ -24,7 +24,9 @@ createServer((page) =>
             return (
                 <>
                     <PrimeReactProvider>
-                        <App {...props} />
+                        <DialogProvider>
+                            <App {...props} />
+                        </DialogProvider>
                     </PrimeReactProvider>
                 </>
             );

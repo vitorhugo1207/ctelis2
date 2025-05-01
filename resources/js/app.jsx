@@ -5,6 +5,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
 import { PrimeReactProvider } from 'primereact/api';
+import { DialogProvider } from './context/DialogContext';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Labkrafs';
 
@@ -16,7 +17,9 @@ createInertiaApp({
 
         root.render(
             <PrimeReactProvider>
-                <App {...props} />
+                <DialogProvider>
+                    <App {...props} />
+                </DialogProvider>
             </PrimeReactProvider>
         );
     },
