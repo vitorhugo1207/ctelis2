@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { InputText } from "primereact/inputtext";
 import axios from 'axios';
 import { Message } from 'primereact/message';
+import DataTableMobile from './dataTable/dataTableMobile';
 
 export default function AlunoMobile({ alunos }) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -44,9 +43,7 @@ export default function AlunoMobile({ alunos }) {
                             />
                             {errorMsg && <div className='pt-1'><Message severity="error" text={errorMsg} className='w-full' /></div>}
                         </div>
-                        <DataTable value={alunoList} emptyMessage="Nenhum aluno(a) encontrado." sortMode="multiple">
-                            <Column field="name" header="Nome" sortable />
-                        </DataTable>
+                        <DataTableMobile alunoList={alunoList} />
                     </div>
                 </TabPanel>
             </TabView>
