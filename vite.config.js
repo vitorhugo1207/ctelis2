@@ -13,10 +13,15 @@ export default defineConfig({
         react(),
     ],
     server: {
-        host: '127.0.0.1',
+        host: '0.0.0.0',
         port: 5173,
+        cors: {
+            origin: '*', // Allow all origins
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
+            allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+        },
         hmr: {
-            host: process.env.REPL_SLUG ? `${process.env.REPL_SLUG}.id.repl.co` : 'localhost',
+            host: process.env.REPL_SLUG ? `${process.env.REPL_SLUG}.id.repl.co` : '127.0.0.1',
             protocol: process.env.REPL_SLUG ? 'wss' : 'ws',
         },
         proxy: {
