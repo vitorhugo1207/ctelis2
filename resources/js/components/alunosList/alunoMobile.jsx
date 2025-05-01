@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Message } from 'primereact/message';
 import DataTableMobile from './dataTable/dataTableMobile';
 import DialogConfirm from '../dialogs/dialogConfirm';
+import { Button } from 'primereact/button';
 
 export default function AlunoMobile({ alunos, toastSuccess, toastError }) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -47,12 +48,20 @@ export default function AlunoMobile({ alunos, toastSuccess, toastError }) {
     const renderTabContent = () => (
         <div className="flex flex-col gap-3">
             <div className="card flex flex-col align-items-center">
-                <InputText
-                    placeholder="Buscar (nome, telefone, endereço etc)"
-                    className='w-full'
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+                <div className='flex flex-row gap-2 w-full'>
+                    <InputText
+                        placeholder="Buscar"
+                        className='w-full'
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <Button
+                        label="Novo"
+                        severity='contrast'
+                        icon="pi pi-plus"
+                        className="p-button-outlined w-36"
+                    />
+                </div>
                 {errorMsg && <div className='pt-1'><Message severity="error" text={errorMsg} className='w-full' /></div>}
             </div>
             <DataTableMobile alunoList={alunoList} toastSuccess={toastSuccess} toastError={toastError} setAlunoList={setAlunoList} />
@@ -67,7 +76,7 @@ export default function AlunoMobile({ alunos, toastSuccess, toastError }) {
                     {renderTabContent()}
                 </TabPanel>
                 {arteMacial.map((arte, index) => (
-                    <TabPanel key={index} header={"Alunos ".concat(arte.name)}>
+                    <TabPanel key={index} header={arte.name}>
                         {renderTabContent()}
                     </TabPanel>
                 ))}
