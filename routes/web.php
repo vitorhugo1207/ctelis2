@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('alunos', AlunoController::class)->name('alunos');
+    Route::get('alunoSearch', [AlunoController::class, 'alunoSearch'])->name('alunoSearch');
 });
 
 require __DIR__ . '/auth.php';

@@ -60,7 +60,7 @@ export default function Login({ status, canResetPassword }) {
                                 <Checkbox name='remember' onChange={(e) => setData('remember', e.checked)} checked={data.remember} />
                                 <label htmlFor="remember">Relembra-me</label>
                             </div>
-                            <div className='pt-5 flex justify-center'>
+                            <div className='pt-5 flex justify-center w-full'>
                                 <Button type='submit' label="Entrar" className='w-80 btnPrimary' disabled={processing} />
                             </div>
                         </form>

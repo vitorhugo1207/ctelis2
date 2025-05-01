@@ -1,8 +1,9 @@
 import React from 'react';
 import AuthLayout from '@/Layouts/authLayout';
 import { Head } from '@inertiajs/react';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
+import AlunoMobile from '../../components/alunosList/alunoMobile';
+import AlunoDesktop from '../../components/alunosList/alunoDesktop';
+
 
 export default function AlunosList({ alunos }) {
 
@@ -11,9 +12,12 @@ export default function AlunosList({ alunos }) {
             <Head title="Alunos" />
 
             <div className="card">
-                <DataTable value={alunos} sortMode="multiple">
-                    <Column field="name" header="Nome" sortable filter />
-                </DataTable>
+                <div className="hidden md:block">
+                    <AlunoDesktop alunos={alunos} />
+                </div>
+                <div className="md:hidden">
+                    <AlunoMobile alunos={alunos} />
+                </div>
             </div>
         </>
     );
