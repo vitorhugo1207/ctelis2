@@ -22,13 +22,18 @@ class AlunoController extends Controller
     public function alunoSearch(Request $request)
     {
         $search = $request->input('search');
+        $arteId = $request->input('arte');
 
         $alunos = Aluno::when($search, function ($query, $search) {
             $query->where('name', 'like', "%{$search}%")
-            ->orWhere('telefone', 'like', "%{$search}%")
-            ->orWhere('endereco', 'like', "%{$search}%")
-            ->orWhere('nomeResponsavel', 'like', "%{$search}%")
-            ->orWhere('telefoneResponsavel', 'like', "%{$search}%");
+                ->orWhere('telefone', 'like', "%{$search}%")
+                ->orWhere('endereco', 'like', "%{$search}%")
+                ->orWhere('nomeResponsavel', 'like', "%{$search}%")
+                ->orWhere('telefoneResponsavel', 'like', "%{$search}%");
+        })->when($arteId > 0, function ($query) use ($arteId) {
+            $query->whereHas('artesMarciais', function ($subQuery) use ($arteId) {
+                $subQuery->where('arte_marcials.id', $arteId);
+            });
         })->limit(50)->get();
 
         return response()->json(['alunos' => $alunos]);

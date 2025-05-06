@@ -12,10 +12,12 @@ export default function AlunoMobile({ alunos, toastSuccess, toastError }) {
     const [errorMsg, setErrorMsg] = useState('');
     const [alunoList, setAlunoList] = useState([]);
     const [arteMacial, setArteMarcial] = useState([]);
+    const [arte, setArte] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(0);
 
-    const fetchAlunos = async (search = '') => {
+    const fetchAlunos = async (search = '', arte) => {
         try {
-            const response = await axios.get('/alunoSearch', { params: { search } });
+            const response = await axios.get('/alunoSearch', { params: { search, arte } });
             setAlunoList(response.data.alunos);
         } catch (error) {
             console.error('Erro ao buscar alunos: ', error);
@@ -34,16 +36,16 @@ export default function AlunoMobile({ alunos, toastSuccess, toastError }) {
 
     useEffect(() => {
         setErrorMsg('');
-        if (searchTerm) {
-            fetchAlunos(searchTerm);
+        if (searchTerm || arte) {
+            fetchAlunos(searchTerm, arte);
         } else {
             setAlunoList(alunos);
         }
-    }, [searchTerm]);
+    }, [searchTerm, arte]);
 
     useEffect(() => {
         fetchArteMarcial();
-    }, [])
+    }, []);
 
     const renderTabContent = () => (
         <div className="flex flex-col gap-3">
@@ -71,12 +73,22 @@ export default function AlunoMobile({ alunos, toastSuccess, toastError }) {
     return (
         <>
             <DialogConfirm />
-            <TabView>
+            <TabView
+                activeIndex={activeIndex}
+                onTabChange={(e) => {
+                    setActiveIndex(e.index);
+                    if (e.index === 0) {
+                        setArte(0);
+                    } else {
+                        setArte(arteMacial[e.index - 1]?.id || 0);
+                    }
+                }}
+            >
                 <TabPanel header="Todos os Alunos">
                     {renderTabContent()}
                 </TabPanel>
-                {arteMacial.map((arte, index) => (
-                    <TabPanel key={index} header={arte.name}>
+                {arteMacial.map((arte) => (
+                    <TabPanel key={arte.id} header={arte.name}>
                         {renderTabContent()}
                     </TabPanel>
                 ))}
