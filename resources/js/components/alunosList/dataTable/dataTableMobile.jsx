@@ -3,9 +3,11 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { useDialog } from '../../../context/DialogContext';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 export default function DataTableMobile({ alunoList, toastSuccess, toastError, setAlunoList }) {
     const { showDialog } = useDialog();
+    const [alunoSelected, setAlunoSelected] = useState(null);
 
     const confirmDeleteAluno = (aluno) => {
         showDialog({
@@ -26,19 +28,33 @@ export default function DataTableMobile({ alunoList, toastSuccess, toastError, s
         });
     };
 
-    const optionsAluno = (rowData) => {
-        return (
-            <div className="flex gap-2 w-full justify-center">
-                <Button onClick={() => confirmDeleteAluno(rowData)} icon="pi pi-trash" className="p-button-rounded p-button-danger" text />
-            </div>
-        );
+    const handleAlunoSelected = (aluno) => {
+        const response = axios.get(`/aluno/${aluno.id}`);
+        if (response.status !== 200) {
+            toastError('Erro ao buscar aluno.');
+        }
     }
 
+    useEffect(() => {
+        if (alunoSelected) {
+            handleAlunoSelected(alunoSelected);
+            setAlunoSelected(null);
+        }
+    }, [alunoSelected]);
+
+    const optionsAluno = (rowData) => {
+        return (
+            <div className='flex w-full justify-center gap-2'>
+                <Button onClick={() => confirmDeleteAluno(rowData)} icon='pi pi-trash' className='p-button-rounded p-button-danger' text />
+            </div>
+        );
+    };
+
     return (
-        <DataTable value={alunoList} emptyMessage="Nenhum aluno(a) encontrado." sortMode="multiple" size='small'>
-            <Column field="name" header="Nome" sortable />
-            <Column field="telefone" header="Telefone" sortable />
+        <DataTable value={alunoList} selection={alunoSelected} dataKey='id' selectionMode='single' onSelectionChange={(e) => setAlunoSelected(e.value)} emptyMessage='Nenhum aluno(a) encontrado.' sortMode='multiple' size='small'>
+            <Column field='name' header='Nome' sortable />
+            <Column field='telefone' header='Telefone' sortable />
             <Column body={optionsAluno} />
         </DataTable>
-    )
+    );
 }

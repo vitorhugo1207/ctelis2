@@ -58,4 +58,17 @@ class AlunoController extends Controller
 
         return response()->json(['alunos' => $this->getAllAlunos()]);
     }
+
+    public function getAluno($id)
+    {
+        $aluno = Aluno::find($id);
+
+        if (!$aluno) {
+            return response()->json([
+                'error' => 'Aluno não encontrado.'
+            ], 404);
+        }
+
+        return inertia('alunos/aluno', ['aluno' => $aluno]);
+    }
 }

@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
         Route::get('alunos', '__invoke')->name('alunos');
         Route::get('alunoSearch', 'alunoSearch')->name('alunoSearch');
         Route::delete('deleteAluno/{id}', 'destroy')->name('deleteAluno');
+        Route::get('aluno/{id}', 'getAluno')->name('aluno');
     });
 
     Route::get('allArtesMarciais', [ArteMarcialController::class, 'getAllArtesMarciais'])->name('allArtesMarciais');
